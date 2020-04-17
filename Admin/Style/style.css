@@ -1,0 +1,280 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#wrapper .sidebar {
+  font-family: 'Righteous', cursive;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100vh;
+  background-color: #4e73df;
+}
+
+#wrapper .sidebar .container,
+#wrapper .sidebar .container .navbar a {
+  color: #ffffff;
+}
+
+#wrapper .sidebar .container .navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 30px;
+}
+
+#wrapper .sidebar .container .navigation div {
+  height: 70px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#wrapper .sidebar .container .navigation a {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: auto;
+  margin-left: 3px;
+  font-size: 15px;
+  color: #ffffff;
+  text-decoration: none;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+#wrapper .sidebar .container .navigation a .fas {
+  margin-right: 5px;
+}
+
+#wrapper .sidebar .container .navigation a:hover {
+  font-size: 18px;
+  color: #c2c2c2;
+  font-family: 'Righteous', cursive;
+}
+
+#wrapper .sidebar .container .navigation .dashboard a {
+  font-family: 'Righteous', cursive;
+}
+
+#wrapper .main_content {
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+  height: 300px;
+  background-color: #dddddd;
+  height: 100vh;
+}
+
+#wrapper .main_content .header {
+  width: 100%;
+  height: 10%;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 1px 1px rgba(128, 128, 128, 0.5);
+          box-shadow: 0 1px 1px 1px rgba(128, 128, 128, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#wrapper .main_content .header .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 15px;
+}
+
+#wrapper .main_content .header .user span,
+#wrapper .main_content .header .user img {
+  margin: auto;
+}
+
+#wrapper .main_content .header .user span {
+  margin-right: 10px;
+}
+
+#wrapper .main_content .header .user img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#wrapper .main_content .header .user #admin-avatar:hover ~ .floating-nav {
+  opacity: 1;
+  top: 40px;
+  visibility: unset;
+}
+
+#wrapper .main_content .header .user .floating-nav {
+  position: absolute;
+  top: 90px;
+  width: 150px;
+  background: transparent;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  visibility: hidden;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  right: 10px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+#wrapper .main_content .header .user .floating-nav:hover {
+  visibility: unset;
+  top: 40px;
+}
+
+#wrapper .main_content .header .user .floating-nav .nav {
+  width: 150px;
+  height: 100px;
+  margin-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #e7e7e7;
+  opacity: .8;
+  border-radius: 5px;
+}
+
+#wrapper .main_content .header .user .floating-nav .nav div {
+  margin: auto;
+}
+
+#wrapper .main_content .header .user .floating-nav .nav div a {
+  color: #5a5a5a;
+  text-decoration: none;
+}
+
+#wrapper .main_content .header .user .floating-nav .nav div a:hover {
+  font-size: 15px;
+}
+
+#wrapper .main_content .header .user .floating-nav .nav div a i.fa-sign-out-alt {
+  padding-top: 10px;
+}
+
+#wrapper .main_content .header .user .floating-nav .nav div i {
+  padding-right: 5px;
+}
+
+#wrapper .main_content .header .content {
+  width: 100%;
+  height: 80%;
+}
+
+#wrapper .main_content .header .footer {
+  width: 100%;
+  height: 10%;
+  background: transparent;
+}
+
+#wrapper .main_content .content .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#wrapper .main_content .content .container h3 {
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+#wrapper .main_content .content .container .menu {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10%;
+}
+
+#wrapper .main_content .content .container .menu div {
+  font-family: 'Assistant', sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+  width: 25%;
+  height: 150px;
+  background-color: #ffffff;
+  margin: auto;
+  margin-left: 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+#wrapper .main_content .content .container .menu div span {
+  display: block;
+  margin-top: 10px;
+  margin-left: 17px;
+}
+
+#wrapper .main_content .content .container .menu div span.value {
+  font-size: 24px;
+  color: #acacac;
+}
+
+#wrapper .main_content .content .container .total-revenue::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 150px;
+  background-color: rgba(255, 0, 0, 0.7);
+  border-radius: 5px 0 0 5px;
+}
+
+#wrapper .main_content .content .container .revenue-month::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 150px;
+  background-color: rgba(0, 26, 255, 0.7);
+  border-radius: 5px 0 0 5px;
+}
+
+#wrapper .main_content .content .container .sukses::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 150px;
+  background-color: rgba(0, 255, 55, 0.7);
+  border-radius: 5px 0 0 5px;
+}
+
+#wrapper .main_content .content .container .pending::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 150px;
+  background-color: rgba(238, 255, 0, 0.7);
+  border-radius: 5px 0 0 5px;
+}
+/*# sourceMappingURL=style.css.map */
