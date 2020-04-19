@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Assistant', sans-serif;
+}
+
+section.success p {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+section.success span {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #b4b2b2;
+}
+
+section.success h5 {
+  font-size: 32px;
+}
+
+section.success img {
+  width: 100px;
+  height: 100px;
+}
+/*# sourceMappingURL=style.css.map */

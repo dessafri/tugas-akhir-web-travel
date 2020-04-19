@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Assistant', sans-serif;
+}
+
+section.success {
+    p {
+        font-size: 25px;
+        margin-top: 10px;
+    }
+    span {
+        display: block;
+        font-weight: bold;
+        margin-top: 10px;
+        // color: red;
+        color: rgb(180, 178, 178);
+    }
+    h5 {
+        font-size: 32px;
+    }
+    img {
+        width: 100px;
+        height: 100px;
+    }
+    h5 {}
+}
