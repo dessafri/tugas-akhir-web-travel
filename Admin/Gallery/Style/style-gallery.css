@@ -1,0 +1,12 @@
+a {
+  text-decoration: none;
+}
+
+.sidebar {
+  height: auto;
+}
+
+.main_content .content {
+  min-height: 100vh;
+}
+/*# sourceMappingURL=style-gallery.css.map */
