@@ -1,0 +1,30 @@
+#btn-plus {
+    a {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+    }
+    &:hover i {
+        display: inline-block;
+        transform: scale(1.2)
+    }
+}
+
+#header {
+    height: 70px !important;
+}
+
+.sidebar {
+    height: auto;
+}
+
+.main_content {
+    .content {
+        min-height: 100vh;
+    }
+}
+
+.footer {
+    position: relative;
+    // min-height: 100%;
+}

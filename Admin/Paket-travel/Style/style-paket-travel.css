@@ -1,0 +1,28 @@
+#btn-plus a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+#btn-plus:hover i {
+  display: inline-block;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+#header {
+  height: 70px !important;
+}
+
+.sidebar {
+  height: auto;
+}
+
+.main_content .content {
+  min-height: 100vh;
+}
+
+.footer {
+  position: relative;
+}
+/*# sourceMappingURL=style-paket-travel.css.map */
