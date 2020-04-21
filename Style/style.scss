@@ -7,8 +7,160 @@
 }
 
 $primarycolor: #4e73df;
+// navbar
+.navbar {
+    // box-sizing: border-box;
+    // justify-content: space-between;
+    // width: 1088px;
+    height: 89px;
+    // background: transparent;
+    #navbarNav {
+        ul {
+            li {
+                a {
+                    font-size: 20px !important;
+                    font-weight: bold !important;
+                }
+            }
+        }
+    }
+}
+
+// jumbotron
+.jumbotron {
+    width: 100%;
+    // height: 10;
+    height: 700px;
+    margin-top: -200px;
+    background: url("/img/bg.png");
+    background-position: center;
+    background-size: cover;
+    .title {
+        margin-top: 200px;
+        color: white;
+        h1 {
+            font-family: "Playfair Display";
+            font-weight: bold;
+            font-size: 40px;
+            letter-spacing: 0.01em;
+            text-align: left;
+            // color: #fff;
+        }
+        p {
+            width: 352px;
+            height: 146px;
+            font-family: Assistant;
+            font-weight: normal;
+            font-size: 18px;
+            letter-spacing: 0.01em;
+            text-align: left;
+            color: #fff;
+            margin-top: -100px;
+        }
+        p.lead {
+            font-family: Assistant;
+            font-weight: normal;
+            font-size: 18px;
+            letter-spacing: 0.01em;
+            text-align: left;
+            margin-top: 0;
+            // color: #fff;
+            a.btn {
+                width: 213px;
+                height: 55px;
+                border-radius: 10px;
+                background: #4e59b5;
+            }
+        }
+    }
+}
+
+//  top destinations
+.top-destination {
+    font-family: Righteous;
+    .container {
+        h1 {
+            font-family: Righteous;
+            font-weight: normal;
+            font-size: 40px;
+        }
+        .section {
+            font-family: Righteous;
+            font-weight: normal;
+            .card-destination {
+                padding-top: 20px;
+            }
+            h3 {
+                // margin-top: 30px;
+                font-size: 40px;
+                color: #fff;
+            }
+        }
+    }
+}
+
+// explore-indonesia
+#explore-indonesia {
+    font-family: Assistant;
+    color: #7d7c7c;
+    span {
+        font-weight: normal;
+        font-size: 46px;
+        letter-spacing: 0.01em;
+    }
+    h1 {
+        font-family: Righteous;
+        font-weight: normal;
+        font-size: 56px;
+        letter-spacing: 0.05em;
+        text-align: left;
+        color: #7d7c7c;
+    }
+    .travel-packages {
+        .container {
+            .card {
+                margin-left: 10px;
+                margin-top: 10px;
+                h3 {
+                    font-size: 26px;
+                    font-weight: bold;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+section.footer {
+    .footer-nav {
+        margin-bottom: 10px !important;
+        // margin-left: -5px !important;
+        a {
+            font-family: Assistant;
+            font-weight: bold;
+            font-size: 20px;
+            color: #707070;
+            text-decoration: none;
+        }
+        .icon {
+            margin-left: 15px;
+            margin-top: -10px;
+            a {
+                filter: grayscale(100%);
+                transition: 500ms;
+                display: inline-block;
+                &:hover {
+                    filter: none;
+                    transform: scale(1.25, 1.25);
+                }
+            }
+        }
+    }
+}
+
 // login-register
 section.title {
+    margin-bottom: 30px;
     color: #7D7C7C;
     h1 {
         display: inline-block;
@@ -110,20 +262,33 @@ section.main {
                 .btn-login {
                     width: 210px;
                     margin-top: 30px;
-                    margin-left: 50px;
+                    margin-left: 100px;
                     span {
                         font-size: 26px;
                         font-weight: bold;
                     }
                 }
+                .tidakadaakun {
+                    h5 {
+                        font-size: 15px;
+                        // font-weight: ;
+                        margin-left: 100px;
+                        margin-top: 20px;
+                        a {
+                            display: inline-block;
+                            font-weight: bold;
+                            color: $primarycolor;
+                            // cursor: pointer;
+                            text-decoration: none;
+                        }
+                    }
+                }
             }
             .form-register {
-                // margin-top: 200px;
-                // right: -1000px;
-                // .form-group:first-child {
-                //     margin-top: -140px;
-                //     margin-bottom: 70px;
-                // }
+                .form-group:first-child {
+                    // margin-top: -140px;
+                    margin-bottom: 10px;
+                }
             }
         }
     }

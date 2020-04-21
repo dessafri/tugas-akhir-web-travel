@@ -39,7 +39,7 @@
                         <button type="button" id="btn-register">Register</button>
                     </div>
                     <div class="form" style="display: flex; margin-top: 10px;">
-                        <form class="form-login" style="width: 80%; left: 150px; top: 90px;" id="login" onclick="login()">
+                        <form class="form-login" style="width: 80%; left: 150px; top: 90px;" id="login">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="username" required>
                                 <label>Username</label>
@@ -52,6 +52,10 @@
                                 <a href="" class="text-decoration-none">Forgot Password ?</a>
                             </div>
                             <button type="submit" class="btn btn-primary btn-login"><span>LOGIN</span></button>
+                            <div class="tidakadaakun d-flex justify-content-start mt-3">
+                                <h5>Belum Punya Akun ? <a href="" id="spanregis">REGISTER</a></h5>
+                                </a>
+                            </div>
                         </form>
                         <form class="form-register" style="width: 80%; left: 550px; top: 90px;" id="register">
                             <div class="form-group">
@@ -103,12 +107,28 @@
         let btn = document.querySelector("#btn");
         let btnregister = document.querySelector("#btn-register");
         let btnlogin = document.querySelector("#btn-login");
+        let spanregis = document.querySelector("#spanregis");
 
         $(btnregister).on('click', () => {
             $(register).css("left", "-210px")
-            $(login).css("left", "-550px")
-            $('#main-login').css("margin-top", "30px")
+            $(login).css({
+                    "left": "-550px",
+                    "top": "150px"
+                })
+                // $('#main-login').css("margin-top", "30px")
             $(btn).css("left", "45%")
+            console.log("oke")
+        })
+        $(spanregis).on('click', (e) => {
+            $(register).css("left", "-210px")
+            $(login).css({
+                    "left": "-550px",
+                    "top": "150px"
+                })
+                // $('#main-login').css("margin-top", "30px")
+            $(btn).css("left", "45%")
+            e.preventDefault();
+            console.log("oke")
         })
         $(btnlogin).on('click', () => {
             $(register).css("left", "550px")
