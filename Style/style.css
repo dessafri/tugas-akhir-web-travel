@@ -153,24 +153,24 @@ section.footer .footer-nav .icon a:hover {
           transform: scale(1.25, 1.25);
 }
 
-section.title {
+.login-register section.title {
   margin-bottom: 30px;
   color: #7D7C7C;
 }
 
-section.title h1 {
+.login-register section.title h1 {
   display: inline-block;
   font-weight: bold;
   font-size: 32px;
 }
 
-section.title span {
+.login-register section.title span {
   display: inline-block;
   font-weight: lighter;
   font-size: 36px;
 }
 
-section.main .container .login-register {
+.login-register section.main .container .login-register {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -182,11 +182,11 @@ section.main .container .login-register {
   overflow: hidden;
 }
 
-section.main .container .login-register .button-box {
+.login-register section.main .container .login-register .button-box {
   position: relative;
 }
 
-section.main .container .login-register .button-box .btn {
+.login-register section.main .container .login-register .button-box .btn {
   position: absolute;
   top: 0;
   left: 0;
@@ -198,7 +198,7 @@ section.main .container .login-register .button-box .btn {
   transition: 1s;
 }
 
-section.main .container .login-register .button-box button {
+.login-register section.main .container .login-register .button-box button {
   position: relative;
   background: transparent;
   border: none;
@@ -209,27 +209,27 @@ section.main .container .login-register .button-box button {
   padding: 0 30px;
 }
 
-section.main .container .login-register .form-login,
-section.main .container .login-register .form-register {
+.login-register section.main .container .login-register .form-login,
+.login-register section.main .container .login-register .form-register {
   position: relative;
   margin-top: 50px;
   -webkit-transition: 1s;
   transition: 1s;
 }
 
-section.main .container .login-register .form-login .form-group,
-section.main .container .login-register .form-register .form-group {
+.login-register section.main .container .login-register .form-login .form-group,
+.login-register section.main .container .login-register .form-register .form-group {
   margin-left: 40px;
 }
 
-section.main .container .login-register .form-login .form-group:first-child,
-section.main .container .login-register .form-register .form-group:first-child {
+.login-register section.main .container .login-register .form-login .form-group:first-child,
+.login-register section.main .container .login-register .form-register .form-group:first-child {
   margin-top: -140px;
   margin-bottom: 70px;
 }
 
-section.main .container .login-register .form-login input,
-section.main .container .login-register .form-register input {
+.login-register section.main .container .login-register .form-login input,
+.login-register section.main .container .login-register .form-register input {
   border-top: 0;
   border-right: 0;
   border-left: 0;
@@ -241,18 +241,18 @@ section.main .container .login-register .form-register input {
   margin-top: 40px !important;
 }
 
-section.main .container .login-register .form-login input:focus + label,
-section.main .container .login-register .form-login input:valid + label,
-section.main .container .login-register .form-register input:focus + label,
-section.main .container .login-register .form-register input:valid + label {
+.login-register section.main .container .login-register .form-login input:focus + label,
+.login-register section.main .container .login-register .form-login input:valid + label,
+.login-register section.main .container .login-register .form-register input:focus + label,
+.login-register section.main .container .login-register .form-register input:valid + label {
   -webkit-transform: translateY(-50px);
           transform: translateY(-50px);
   left: 45px !important;
   font-size: 15px;
 }
 
-section.main .container .login-register .form-login label,
-section.main .container .login-register .form-register label {
+.login-register section.main .container .login-register .form-login label,
+.login-register section.main .container .login-register .form-register label {
   display: inline-block;
   position: absolute;
   -webkit-transition: all 800ms;
@@ -266,46 +266,46 @@ section.main .container .login-register .form-register label {
   background-color: white;
 }
 
-section.main .container .login-register .form-login .forgotpassword a,
-section.main .container .login-register .form-register .forgotpassword a {
+.login-register section.main .container .login-register .form-login .forgotpassword a,
+.login-register section.main .container .login-register .form-register .forgotpassword a {
   -webkit-transition: 300ms;
   transition: 300ms;
 }
 
-section.main .container .login-register .form-login .forgotpassword a:hover,
-section.main .container .login-register .form-register .forgotpassword a:hover {
+.login-register section.main .container .login-register .form-login .forgotpassword a:hover,
+.login-register section.main .container .login-register .form-register .forgotpassword a:hover {
   font-weight: bold;
 }
 
-section.main .container .login-register .form-login .btn-login,
-section.main .container .login-register .form-register .btn-login {
+.login-register section.main .container .login-register .form-login .btn-login,
+.login-register section.main .container .login-register .form-register .btn-login {
   width: 210px;
   margin-top: 30px;
   margin-left: 100px;
 }
 
-section.main .container .login-register .form-login .btn-login span,
-section.main .container .login-register .form-register .btn-login span {
+.login-register section.main .container .login-register .form-login .btn-login span,
+.login-register section.main .container .login-register .form-register .btn-login span {
   font-size: 26px;
   font-weight: bold;
 }
 
-section.main .container .login-register .form-login .tidakadaakun h5,
-section.main .container .login-register .form-register .tidakadaakun h5 {
+.login-register section.main .container .login-register .form-login .tidakadaakun h5,
+.login-register section.main .container .login-register .form-register .tidakadaakun h5 {
   font-size: 15px;
   margin-left: 100px;
   margin-top: 20px;
 }
 
-section.main .container .login-register .form-login .tidakadaakun h5 a,
-section.main .container .login-register .form-register .tidakadaakun h5 a {
+.login-register section.main .container .login-register .form-login .tidakadaakun h5 a,
+.login-register section.main .container .login-register .form-register .tidakadaakun h5 a {
   display: inline-block;
   font-weight: bold;
   color: #4e73df;
   text-decoration: none;
 }
 
-section.main .container .login-register .form-register .form-group:first-child {
+.login-register section.main .container .login-register .form-register .form-group:first-child {
   margin-bottom: 10px;
 }
 
@@ -328,5 +328,17 @@ section.success h5 {
 section.success img {
   width: 100px;
   height: 100px;
+}
+
+.profile h3 {
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.my-transaction h3 {
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 26px;
 }
 /*# sourceMappingURL=style.css.map */
