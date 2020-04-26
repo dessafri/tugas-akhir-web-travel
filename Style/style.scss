@@ -12,7 +12,7 @@
         // box-sizing: border-box;
         // justify-content: space-between;
         // width: 1088px;
-        height: 89px;
+        height: 70px;
         // background: transparent;
         #navbarNav {
             ul {
@@ -24,13 +24,18 @@
                 }
             }
         }
+        button {
+            width: 100px;
+            height: 30px;
+            text-align: center !important;
+        }
     }
     
     // jumbotron
     .jumbotron {
         width: 100%;
         // height: 10;
-        height: 700px;
+        height: 650px;
         margin-top: -200px;
         background: url("/img/bg.png");
         background-position: center;
@@ -335,5 +340,74 @@
         }
     }
     
-    // keranajang
-    section.keranjang {}
+    section.section-details {
+        h5 {
+            font-family: Assistant;
+            font-weight: normal;
+            font-size: 14px;
+            text-align: left;
+            color: #707070;
+            margin-top: 100px;
+        }
+        .card-detail {
+            min-height: 700px;
+            margin-top: 20px;
+            // background-color: red;
+            border: 1px solid rgb(190, 190, 190);
+            h3 {
+                font-family: Assistant;
+                font-weight: bold;
+                font-size: 20px;
+                text-align: left;
+                color: #707070;
+                margin-top: 10px;
+            }
+            h5 {
+                font-weight: bold;
+            }
+            p {
+                font-family: Assistant;
+                font-weight: normal;
+                font-size: 16px;
+                text-align: left;
+                color: #707070;
+            }
+            .gallery {
+                .xzoom-thumbs {
+                    margin-left: -55px;
+                }
+            }
+        }
+        .card-informations {
+            height: 300px;
+            margin-top: 20px;
+            border: 1px solid rgb(190, 190, 190);
+            // background-color: red;
+            span {
+                font-family: Assistant;
+                font-weight: normal;
+                font-size: 18px;
+                text-align: left;
+                color: #707070;
+                margin-top: 20px;
+                display: block;
+            }
+            .table-informations {
+                th,
+                td {
+                    border: none;
+                }
+            }
+            .join {
+                button {
+                    font-family: Assistant;
+                    font-weight: bold;
+                    font-size: 20px;
+                    text-align: left;
+                    color: #fff;
+                    text-transform: uppercase;
+                    text-align: center;
+                }
+            }
+        }
+    }
