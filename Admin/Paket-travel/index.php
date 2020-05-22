@@ -3,7 +3,7 @@
 
 require("../../functions/functions.php");
 
-$paket = selectData("SELECT * FROM paket_travel");
+$paket = query("SELECT * FROM paket_travel");
 
 
 ?>
@@ -101,15 +101,17 @@ $paket = selectData("SELECT * FROM paket_travel");
                                         <td><?= $data["harga"] ?></td>
                                         <td>
                                             <button class="btn btn-sm btn-primary">
-                                                <a href="view.html" style="color: white;">
+                                                <a href="view.php?id=<?= $data["id"] ?>" style="color: white;">
                                                     <i class="fas fa-eye"></i></a>
                                             </button>
                                             <button class="btn btn-sm btn-secondary">
-                                                <a href="edit.html" style="color: white;">
+                                                <a href="edit.php?id=<?= $data["id"] ?>"" style=" color: white;">
                                                     <i class="fas fa-pencil-alt"></i></a>
                                             </button>
-                                            <button class="btn btn-sm btn-danger"><a href="" style="color: white;"><i
-                                                        class="fas fa-trash-alt"></i></a></button>
+                                            <button class="btn btn-sm btn-danger"><a
+                                                    href="delete.php?id=<?= $data["id"] ?>" style="color: white;"><i
+                                                        class="fas fa-trash-alt"
+                                                        onclick="return confirm('Yakin ?')"></i></a></button>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

@@ -1,3 +1,12 @@
+<?php
+
+require("../../functions/functions.php");
+$id = $_GET["id"];
+$data = selectData("SELECT * FROM paket_travel WHERE id='$id'");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,16 +32,16 @@
                 <div class="navigation">
                     <hr class="my-1">
                     <div class="dashboard">
-                        <a href="../index.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
+                        <a href="../index.php"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
                     </div>
                     <div class="paket-travel">
-                        <a href="../Paket-travel/index.html"><i class="fas fa-bus"></i>Paket Travel</a></h5>
+                        <a href="../Paket-travel/index.php"><i class="fas fa-bus"></i>Paket Travel</a></h5>
                     </div>
                     <div class="gallery">
-                        <a href="../Gallery/index.html"><i class="fas fa-images"></i></i>Gallery</a></h5>
+                        <a href="../Gallery/index.php"><i class="fas fa-images"></i></i>Gallery</a></h5>
                     </div>
                     <div class="transaksi">
-                        <a href="../Transaksi/index.html"><i class="fas fa-dollar-sign"></i>Transaksi</a></h5>
+                        <a href="../Transaksi/index.php"><i class="fas fa-dollar-sign"></i>Transaksi</a></h5>
                     </div>
                     <hr class="my-1">
                 </div>
@@ -60,35 +69,42 @@
                         <form>
                             <div class="form-group">
                                 <label>Title</label>
-                                <input type="text" class="form-control" id="title" name="title" readonly>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="<?= $data[0]["title"] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Location</label>
-                                <input type="text" class="form-control" id="location" name="location" readonly>
+                                <input type="text" class="form-control" id="location" name="location"
+                                    value="<?= $data[0]["location"] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label ">About</label>
-                                    <textarea class=" form-control " id=" text-area " rows=" 3 "></textarea readonly>
-                                </div>
-                                <div class=" form-group ">
+                                    <textarea class=" form-control " id=" text-area " 
+                                    rows=" 3 "><?= $data[0]["about"] ?></textarea readonly>
+                            </div>
+                            <div class=" form-group ">
                                     <label>Duration</label>
-                                    <input type=" text " class=" form-control " id=" duration " name=" duration " readonly>
-                                </div>
-                                <div class=" form-group ">
-                                    <label>Banyak Orang</label>
-                                    <input type=" text " class=" form-control " id=" orang " name=" orang " readonly>
-                                </div>
-                                <div class=" form-group ">
-                                    <label ">Destination</label>
-                                <textarea class=" form-control" id="text-area" rows="3" readonly></textarea>
+                                    <input type=" text " class=" form-control " id=" duration " name="
+                                    duration " value=" <?= $data[0]["duration"] ?>" readonly>
+                            </div>
+                            <div class=" form-group ">
+                                <label>Banyak Orang</label>
+                                <input type=" text " class=" form-control " id=" orang " name=" orang "
+                                    value="<?= $data[0]["orang"] ?>" readonly>
+                            </div>
+                            <div class=" form-group ">
+                                <label ">Destination</label>
+                                <textarea class=" form-control" id="text-area" rows="3"
+                                    readonly><?= $data[0]["destination"] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label ">Fasilitas</label>
-                                    <textarea class=" form-control " id=" text-area " rows=" 3 " readonly></textarea>
-                                </div>
-                                <div class=" form-group ">
-                                    <label>Harga</label>
-                                    <input type=" text " class=" form-control mb-3 " id=" harga " name=" harga " readonly>
+                                    <textarea  class=" form-control " id=" text-area " rows=" 3 " readonly><?= $data[0]["fasilitas"] ?></textarea>
+                            </div>
+                            <div class=" form-group ">
+                                <label>Harga</label>
+                                <input type=" text " class=" form-control mb-3 " id=" harga " name=" harga " 
+                                value=" <?= $data[0]["harga"] ?>" readonly>
                             </div>
                         </form>
 

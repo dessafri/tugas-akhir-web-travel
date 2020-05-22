@@ -12,7 +12,7 @@ if (!$conn) {
 
 
 
-function selectData($query)
+function query($query)
 {
     global $conn;
     $result = mysqli_query($conn, $query);
@@ -22,6 +22,15 @@ function selectData($query)
     };
 
     return $rows;
+}
+
+function delete($id)
+{
+    global $conn;
+
+    mysqli_query($conn, "DELETE  FROM paket_travel WHERE id='$id'");
+
+    return mysqli_affected_rows($conn);
 }
 
 function putDataTravel($data)
@@ -34,7 +43,6 @@ function putDataTravel($data)
     $keberangkatan = "Requested";
     $duration = htmlspecialchars($data["duration"]);
     $orang = htmlspecialchars($data["orang"]);
-    $duration = htmlspecialchars($data["duration"]);
     $destination = htmlspecialchars($data["destination"]);
     $fasilitas = htmlspecialchars($data["fasilitas"]);
     $harga = htmlspecialchars($data["harga"]);
@@ -42,6 +50,41 @@ function putDataTravel($data)
     $query = "INSERT INTO paket_travel VALUES ('','$title','$location','$about','$keberangkatan','$duration','$orang','$destination','$fasilitas','$harga')";
 
     mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function updateDataTravel($data)
+{
+    global $conn;
+    $id = $data["id"];
+    $title = htmlspecialchars($data["title"]);
+    $location = htmlspecialchars($data["location"]);
+    $about = htmlspecialchars($data["about"]);
+    $keberangkatan = "Requested";
+    $duration = htmlspecialchars($data["duration"]);
+    $orang = htmlspecialchars($data["orang"]);
+    $destination = htmlspecialchars($data["destination"]);
+    $fasilitas = htmlspecialchars($data["fasilitas"]);
+    $harga = htmlspecialchars($data["harga"]);
+
+    $query = " UPDATE paket_travel SET 
+                        title = '$title',
+                        location = '$location',
+                        about = '$about',
+                        keberangkatan = 'Requested',
+                        duration = '$duration',
+                        orang = '$orang',
+                        duration = '$duration',
+                        destination = '$destination',
+                        fasilitas = '$fasilitas',
+                        harga = '$harga'
+
+                        WHERE id='$id'
+    ";
+
+    mysqli_query($conn, $query);
+
 
     return mysqli_affected_rows($conn);
 }
