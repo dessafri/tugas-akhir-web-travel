@@ -1,3 +1,21 @@
+<?php
+
+require("functions/functions.php");
+
+if (isset($_POST["submit_register"])) {
+
+    if (register($_POST) > 0) {
+        echo "<script>alert('sukses')</script>";
+    } else {
+        echo mysqli_error($conn);
+    }
+} elseif (isset($_POST["submit_login"])) {
+
+    login($_POST);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,14 +51,17 @@
                             <img src="img/gb3.png" style="width: 230px; height: 193px;">
                         </div>
                     </div>
-                    <div class="login-register d-flex flex-wrap justify-content-center" style=" width: 70%; height: 100%;">
-                        <div class="button-box d-flex justify-content-center" style=" width: 70%; height: 40px; border-radius: 30px;">
+                    <div class="login-register d-flex flex-wrap justify-content-center"
+                        style=" width: 70%; height: 100%;">
+                        <div class="button-box d-flex justify-content-center"
+                            style=" width: 70%; height: 40px; border-radius: 30px;">
                             <div class="btn" id="btn"></div>
                             <button type="button" id="btn-login">Login</button>
                             <button type="button" id="btn-register">Register</button>
                         </div>
                         <div class="form" style="display: flex; margin-top: 10px;">
-                            <form class="form-login" style="width: 80%; left: 150px; top: 90px;" id="login">
+                            <form class="form-login" style="width: 80%; left: 150px; top: 90px;" id="login"
+                                method="POST">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="username" required>
                                     <label>Username</label>
@@ -52,13 +73,15 @@
                                 <div class="forgotpassword d-flex justify-content-end mt-3">
                                     <a href="" class="text-decoration-none">Forgot Password ?</a>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-login"><span>LOGIN</span></button>
+                                <button type="submit" class="btn btn-primary btn-login"
+                                    name="submit_login"><span>LOGIN</span></button>
                                 <div class="tidakadaakun d-flex justify-content-start mt-3">
                                     <h5>Belum Punya Akun ? <a href="" id="spanregis">REGISTER</a></h5>
                                     </a>
                                 </div>
                             </form>
-                            <form class="form-register" style="width: 80%; left: 550px; top: 90px;" id="register">
+                            <form class="form-register" style="width: 80%; left: 550px; top: 90px;" id="register"
+                                method="POST">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="username" required>
                                     <label>Username</label>
@@ -78,7 +101,8 @@
                                 <!-- <div class="forgotpassword d-flex justify-content-end mt-3">
                             <a href="" class="text-decoration-none">Forgot Password ?</a>
                         </div> -->
-                                <button type="submit" class="btn btn-primary btn-login"><span>REGISTER</span></button>
+                                <button type="submit" class="btn btn-primary btn-login"
+                                    name="submit_register"><span>REGISTER</span></button>
                             </form>
                         </div>
                     </div>
@@ -104,40 +128,40 @@
     <script src=" Libraries/jquery/jquery-3.4.1.min.js "></script>
 
     <script>
-        let register = document.querySelector("#register");
-        let login = document.querySelector("#login");
-        let btn = document.querySelector("#btn");
-        let btnregister = document.querySelector("#btn-register");
-        let btnlogin = document.querySelector("#btn-login");
-        let spanregis = document.querySelector("#spanregis");
+    let register = document.querySelector("#register");
+    let login = document.querySelector("#login");
+    let btn = document.querySelector("#btn");
+    let btnregister = document.querySelector("#btn-register");
+    let btnlogin = document.querySelector("#btn-login");
+    let spanregis = document.querySelector("#spanregis");
 
-        $(btnregister).on('click', () => {
-            $(register).css("left", "-210px")
-            $(login).css({
-                    "left": "-550px",
-                    "top": "150px"
-                })
-                // $('#main-login').css("margin-top", "30px")
-            $(btn).css("left", "45%")
-            console.log("oke")
+    $(btnregister).on('click', () => {
+        $(register).css("left", "-210px")
+        $(login).css({
+            "left": "-550px",
+            "top": "150px"
         })
-        $(spanregis).on('click', (e) => {
-            $(register).css("left", "-210px")
-            $(login).css({
-                    "left": "-550px",
-                    "top": "150px"
-                })
-                // $('#main-login').css("margin-top", "30px")
-            $(btn).css("left", "45%")
-            e.preventDefault();
-            console.log("oke")
+        // $('#main-login').css("margin-top", "30px")
+        $(btn).css("left", "45%")
+        console.log("oke")
+    })
+    $(spanregis).on('click', (e) => {
+        $(register).css("left", "-210px")
+        $(login).css({
+            "left": "-550px",
+            "top": "150px"
         })
-        $(btnlogin).on('click', () => {
-            $(register).css("left", "550px")
-            $(login).css("left", "150px")
-            $(btn).css("left", "0")
+        // $('#main-login').css("margin-top", "30px")
+        $(btn).css("left", "45%")
+        e.preventDefault();
+        console.log("oke")
+    })
+    $(btnlogin).on('click', () => {
+        $(register).css("left", "550px")
+        $(login).css("left", "150px")
+        $(btn).css("left", "0")
 
-        })
+    })
     </script>
 </body>
 

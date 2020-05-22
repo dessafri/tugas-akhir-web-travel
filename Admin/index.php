@@ -1,6 +1,6 @@
 <?php
 
-require("functions.php")
+require("../functions/functions.php")
 
 
 ?>
@@ -37,7 +37,7 @@ require("functions.php")
                         <a href="index.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
                     </div>
                     <div class="paket-travel">
-                        <a href="Paket-travel/index.html"><i class="fas fa-bus"></i>Paket Travel</a></h5>
+                        <a href="Paket-travel/index.php"><i class="fas fa-bus"></i>Paket Travel</a></h5>
                     </div>
                     <div class="gallery">
                         <a href="Gallery/index.html"><i class="fas fa-images"></i></i>Gallery</a></h5>

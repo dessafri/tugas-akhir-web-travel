@@ -1,3 +1,21 @@
+<?php
+
+require("../../functions/functions.php");
+
+if (isset($_POST["submit"])) {
+
+    if (putDataTravel($_POST) > 0) {
+        echo "
+        <script>alert('Data Berhasil Di tambahkan')
+        document.location.href = 'index.php'
+        </script>";
+    } else {
+        echo "<script>alert('Data gagal Di tambahkan')</script>";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +44,7 @@
                         <a href="../index.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
                     </div>
                     <div class="paket-travel">
-                        <a href="../Paket-travel/index.html"><i class="fas fa-bus"></i>Paket Travel</a></h5>
+                        <a href="../Paket-travel/index.php"><i class="fas fa-bus"></i>Paket Travel</a></h5>
                     </div>
                     <div class="gallery">
                         <a href="../Gallery/index.html"><i class="fas fa-images"></i></i>Gallery</a></h5>
@@ -57,7 +75,7 @@
                 <div class="container">
                     <h3>Tambah Paket Travel</h3>
                     <div class="container mb-3">
-                        <form>
+                        <form action="" method="POST">
                             <div class="form-group">
                                 <label>Title</label>
                                 <input type="text" class="form-control" id="title" name="title">
@@ -68,29 +86,31 @@
                             </div>
                             <div class="form-group">
                                 <label ">About</label>
-                                    <textarea class=" form-control " id=" text-area " rows=" 3 "></textarea>
-                                </div>
-                                <div class=" form-group ">
-                                    <label>Duration</label>
-                                    <input type=" text " class=" form-control " id=" duration " name=" duration ">
-                                </div>
-                                <div class=" form-group ">
-                                    <label>Banyak Orang</label>
-                                    <input type=" text " class=" form-control " id=" orang " name=" orang ">
-                                </div>
-                                <div class=" form-group ">
-                                    <label ">Destination</label>
-                                <textarea class=" form-control" id="text-area" rows="3"></textarea>
+                                    <textarea class=" form-control " id=" text-area " rows=" 3"
+                                    name="about"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label ">Fasilitas</label>
-                                    <textarea class=" form-control " id=" text-area " rows=" 3 "></textarea>
-                                </div>
-                                <div class=" form-group ">
-                                    <label>Harga</label>
-                                    <input type=" text " class=" form-control mb-3 " id=" harga " name=" harga ">
+                            <div class=" form-group ">
+                                <label>Duration</label>
+                                <input type="text" class=" form-control " id="duration" name="duration">
                             </div>
-                            <button type=" submit " class=" btn btn-primary btn-submit btn-block mt-3 ">Submit</button>
+                            <div class=" form-group ">
+                                <label>Banyak Orang</label>
+                                <input type=" text " class="form-control" id="orang" name="orang">
+                            </div>
+                            <div class=" form-group ">
+                                <label ">Destination</label>
+                                <textarea class=" form-control" id="text-area" rows="3" name="destination"></textarea>
+                            </div>
+                            <div class=" form-group ">
+                                <label ">fasilitas</label>
+                                <textarea class=" form-control" id="text-area" rows="3" name="fasilitas"></textarea>
+                            </div>
+                            <div class=" form-group ">
+                                <label>Harga</label>
+                                <input type=" text " class=" form-control mb-3 " id="harga" name="harga">
+                            </div>
+                            <button type=" submit " class=" btn btn-primary btn-submit btn-block mt-3 "
+                                name="submit">Submit</button>
                         </form>
 
                     </div>
