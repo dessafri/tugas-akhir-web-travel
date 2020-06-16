@@ -2,12 +2,12 @@
 
 require("../../functions/functions.php");
 $id = $_GET["id"];
-$data = selectData("SELECT * FROM paket_travel WHERE id='$id'");
+$data = query("SELECT * FROM paket_travel WHERE id='$id'");
 
 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
 
 <head>
@@ -26,7 +26,7 @@ $data = selectData("SELECT * FROM paket_travel WHERE id='$id'");
         <div class="sidebar h-auto">
             <div class="container">
                 <nav class="navbar navbar-light" style="background-color: #4e73df;">
-                    <a class="navbar-brand" href="../index.html"> Fajar Tour And Travel
+                    <a class="navbar-brand" href="../index.php"> Fajar Tour And Travel
                     </a>
                 </nav>
                 <div class="navigation">

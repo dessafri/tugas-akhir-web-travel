@@ -9,7 +9,7 @@ $paket = query("SELECT * FROM paket_travel");
 ?>
 
 
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
 
 <head>
@@ -102,15 +102,15 @@ $paket = query("SELECT * FROM paket_travel");
                                         <td>
                                             <button class="btn btn-sm btn-primary">
                                                 <a href="view.php?id=<?= $data["id"] ?>" style="color: white;">
-                                                    <i class="fas fa-eye"></i></a>
+                                                    <i class="fas fa-eye fa-2x"></i></a>
                                             </button>
                                             <button class="btn btn-sm btn-secondary">
                                                 <a href="edit.php?id=<?= $data["id"] ?>"" style=" color: white;">
-                                                    <i class="fas fa-pencil-alt"></i></a>
+                                                    <i class="fas fa-pencil-alt fa-2x"></i></a>
                                             </button>
                                             <button class="btn btn-sm btn-danger"><a
                                                     href="delete.php?id=<?= $data["id"] ?>" style="color: white;"><i
-                                                        class="fas fa-trash-alt"
+                                                        class="fas fa-trash-alt fa-2x"
                                                         onclick="return confirm('Yakin ?')"></i></a></button>
                                         </td>
                                     </tr>

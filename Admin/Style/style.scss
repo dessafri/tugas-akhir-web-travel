@@ -13,10 +13,12 @@ button {
 }
 
 $primary: #4e73df;
+
 #wrapper {
     width: 100%;
     height: 100%;
     display: flex;
+
     // padding-bottom: 1000px;
     .sidebar {
         font-family: 'Righteous', cursive;
@@ -27,21 +29,25 @@ $primary: #4e73df;
         ;
         // align-self: stretch;
         background-color: $primary;
+
         .container,
         .container .navbar a {
             color: #ffffff;
             ;
         }
+
         .container {
             .navigation {
                 display: flex;
                 flex-direction: column;
                 margin-top: 30px;
+
                 div {
                     height: 70px;
                     margin-bottom: 10px;
                     display: flex;
                 }
+
                 a {
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                     margin: auto;
@@ -51,19 +57,23 @@ $primary: #4e73df;
                     color: #ffffff;
                     text-decoration: none;
                     transition: .5s;
+
                     .fas {
                         margin-right: 5px;
                     }
+
                     &:hover {
                         font-size: 18px;
                         color: rgb(194, 194, 194);
                         font-family: 'Righteous', cursive;
                     }
                 }
+
                 .dashboard a {
                     font-family: 'Righteous', cursive;
                 }
             }
+
             // .toogle {
             //     .button {
             //         &:hover {
@@ -73,11 +83,13 @@ $primary: #4e73df;
             // }
         }
     }
+
     .main_content {
         flex: 5;
         height: 300px;
         background-color: #dddddd;
         height: 100vh;
+
         .header {
             width: 100%;
             height: 70px;
@@ -86,22 +98,27 @@ $primary: #4e73df;
             box-shadow: 0 1px 1px 1px rgba($color: grey, $alpha: .5);
             display: flex;
             justify-content: flex-end;
+
             .user {
                 display: flex;
                 margin-right: 15px;
+
                 span,
                 img {
                     margin: auto;
                 }
+
                 span {
                     margin-right: 10px;
                 }
+
                 img {
                     width: 45px;
                     height: 45px;
                     border-radius: 50%;
                     cursor: pointer;
                 }
+
                 #admin-avatar {
                     &:hover~.floating-nav {
                         opacity: 1;
@@ -114,6 +131,7 @@ $primary: #4e73df;
                         // transform-origin: 50% 50%;
                     }
                 }
+
                 .floating-nav {
                     position: absolute;
                     top: 90px;
@@ -129,10 +147,12 @@ $primary: #4e73df;
                     right: 10px;
                     // display: none;
                     transition: .5s;
+
                     &:hover {
                         visibility: unset;
                         top: 40px;
                     }
+
                     .nav {
                         width: 150px;
                         height: 100px;
@@ -143,21 +163,26 @@ $primary: #4e73df;
                         background-color: #e7e7e7;
                         opacity: .8;
                         border-radius: 5px;
+
                         div {
                             margin: auto;
+
                             // margin-top: 5px;
                             // padding-top: 30px;
                             // display: block;
                             a {
                                 color: rgb(90, 90, 90);
                                 text-decoration: none;
+
                                 &:hover {
                                     font-size: 15px;
                                 }
                             }
+
                             a i.fa-sign-out-alt {
                                 padding-top: 10px;
                             }
+
                             i {
                                 padding-right: 5px;
                             }
@@ -166,21 +191,26 @@ $primary: #4e73df;
                 }
             }
         }
+
         .content {
             width: 100%;
             height: 80%;
+
             .container {
                 // height: 100vh;
                 display: flex;
                 flex-direction: column;
+
                 h3 {
                     margin-top: 50px;
                     margin-left: 10px;
                 }
+
                 .menu {
                     width: 100%;
                     display: flex;
                     margin-top: 10%;
+
                     // justify-content: center;
                     div {
                         font-family: 'Assistant', sans-serif;
@@ -195,17 +225,20 @@ $primary: #4e73df;
                         margin-left: 10px;
                         border-radius: 5px;
                         box-shadow: 0 3px 3px rgba($color: #000000, $alpha: .4);
+
                         span {
                             display: block;
                             margin-top: 10px;
                             margin-left: 17px;
                         }
+
                         span.value {
                             font-size: 24px;
                             color: rgb(172, 172, 172);
                         }
                     }
                 }
+
                 .total-revenue::before {
                     content: '';
                     position: absolute;
@@ -214,6 +247,7 @@ $primary: #4e73df;
                     background-color: rgba($color: red, $alpha: .7);
                     border-radius: 5px 0 0 5px;
                 }
+
                 .revenue-month::before {
                     content: '';
                     position: absolute;
@@ -222,6 +256,7 @@ $primary: #4e73df;
                     background-color: rgba($color: rgb(0, 26, 255), $alpha: .7);
                     border-radius: 5px 0 0 5px;
                 }
+
                 .sukses::before {
                     content: '';
                     position: absolute;
@@ -230,6 +265,7 @@ $primary: #4e73df;
                     background-color: rgba($color: rgb(0, 255, 55), $alpha: .7);
                     border-radius: 5px 0 0 5px;
                 }
+
                 .pending::before {
                     content: '';
                     position: absolute;
@@ -240,10 +276,16 @@ $primary: #4e73df;
                 }
             }
         }
+
         .footer {
             width: 100%;
             // height: 10%;
             background: transparent;
         }
     }
+}
+
+.modal {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }

@@ -16,6 +16,8 @@ if (isset($_POST["submit"])) {
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,22 +37,22 @@ if (isset($_POST["submit"])) {
         <div class="sidebar h-auto">
             <div class="container">
                 <nav class="navbar navbar-light" style="background-color: #4e73df;">
-                    <a class="navbar-brand" href="../index.html"> Fajar Tour And Travel
+                    <a class="navbar-brand" href="../index.php"> Fajar Tour And Travel
                     </a>
                 </nav>
                 <div class="navigation">
                     <hr class="my-1">
                     <div class="dashboard">
-                        <a href="../index.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
+                        <a href="../index.php"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
                     </div>
                     <div class="paket-travel">
                         <a href="../Paket-travel/index.php"><i class="fas fa-bus"></i>Paket Travel</a></h5>
                     </div>
                     <div class="gallery">
-                        <a href="../Gallery/index.html"><i class="fas fa-images"></i></i>Gallery</a></h5>
+                        <a href="../Gallery/index.php"><i class="fas fa-images"></i></i>Gallery</a></h5>
                     </div>
                     <div class="transaksi">
-                        <a href="../Transaksi/index.html"><i class="fas fa-dollar-sign"></i>Transaksi</a></h5>
+                        <a href="../Transaksi/index.php"><i class="fas fa-dollar-sign"></i>Transaksi</a></h5>
                     </div>
                     <hr class="my-1">
                 </div>

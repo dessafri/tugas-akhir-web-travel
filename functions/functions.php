@@ -24,7 +24,7 @@ function query($query)
     return $rows;
 }
 
-function delete($id)
+function deletePaketTravel($id)
 {
     global $conn;
 
@@ -32,6 +32,7 @@ function delete($id)
 
     return mysqli_affected_rows($conn);
 }
+
 
 function putDataTravel($data)
 {
@@ -170,4 +171,96 @@ function login($data)
         </script>
         ";
     }
+}
+
+function updateGambarTravel($data, $gambar)
+{
+    global $conn;
+
+    $id_travel = $data["id"];
+    $namaFile = $gambar["image"]["name"];
+    $tmpName = $gambar["image"]["tmp_name"];
+
+    $ekstensiFile = explode(".", $namaFile);
+    $ekstensiFile = strtolower(end($ekstensiFile));
+
+
+    $namafileBaru = uniqid();
+    $namafileBaru .= ".";
+    $namafileBaru .= $ekstensiFile;
+
+    // var_dump($id_travel);
+    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT image  FROM gallery WHERE id='$id_travel'"));
+    $result = $result["image"];
+
+    var_dump($namaFile);
+
+    mysqli_query($conn, "UPDATE gallery SET 
+                                        image='$namafileBaru'
+
+                                        WHERE id='$id_travel'
+                                        ");
+    move_uploaded_file($tmpName, "../img/paket/" . $namafileBaru);
+    unlink("../img/paket/" . $result);
+
+
+    return mysqli_affected_rows($conn);
+}
+function uploadGambarTravel($data, $gambar)
+{
+    global $conn;
+
+    $id_travel = $data["id"];
+    $namaFile = $gambar["image"]["name"];
+    $tmpName = $gambar["image"]["tmp_name"];
+    $ekstensiFile = explode(".", $namaFile);
+    $ekstensiFile = strtolower(end($ekstensiFile));
+
+
+    $namafileBaru = uniqid();
+    $namafileBaru .= ".";
+    $namafileBaru .= $ekstensiFile;
+
+    // var_dump($id_travel);
+
+
+    mysqli_query($conn, "INSERT INTO gallery VALUES('','$id_travel','$namafileBaru')");
+    move_uploaded_file($tmpName, "../img/paket/" . $namafileBaru);
+
+    return mysqli_affected_rows($conn);
+}
+function deleteGalleryTravel($id)
+{
+    global $conn;
+
+    $data = $id;
+
+    foreach ($data as $id_data) {
+
+        var_dump($id_data);
+
+        $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT image  FROM gallery WHERE id='$id_data'"));
+        $result = $result["image"];
+        unlink("../img/paket/" . $result);
+        mysqli_query($conn, "DELETE  FROM gallery WHERE id='$id_data'");
+    }
+
+    // return mysqli_affected_rows($conn);
+}
+
+function updateTransaksi($data)
+{
+    global $conn;
+    $id = $data["id"];
+    $status = $data["status_transaksi"];
+
+    $query = " UPDATE transaksi SET 
+                        status = '$status'
+                        WHERE id='$id'
+    ";
+
+    mysqli_query($conn, $query);
+
+
+    return mysqli_affected_rows($conn);
 }
