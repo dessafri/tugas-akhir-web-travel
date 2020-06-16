@@ -160,7 +160,6 @@
             )
             $("#paket_travel_id").append(option)
         })
-        .catch(err => console.log(err))
 
     fetch('data.php', {
             method: 'POST'
