@@ -30,6 +30,8 @@ if (isset($_POST["submit"])) {
 
     <!-- Style Paket Travel -->
     <link rel="stylesheet" href="Style/style-paket-travel.css">
+    <script src="ckeditor/ckeditor.js"></script>
+
 </head>
 
 <body>
@@ -88,7 +90,7 @@ if (isset($_POST["submit"])) {
                             </div>
                             <div class="form-group">
                                 <label ">About</label>
-                                    <textarea class=" form-control " id=" text-area " rows=" 3"
+                                <textarea class=" form-control ckeditor " id=" about" rows=" 3"
                                     name="about"></textarea>
                             </div>
                             <div class=" form-group ">
@@ -101,11 +103,13 @@ if (isset($_POST["submit"])) {
                             </div>
                             <div class=" form-group ">
                                 <label ">Destination</label>
-                                <textarea class=" form-control" id="text-area" rows="3" name="destination"></textarea>
+                                <textarea class=" form-control ckeditor" id="destination" rows="3"
+                                    name="destination"></textarea>
                             </div>
                             <div class=" form-group ">
-                                <label ">fasilitas</label>
-                                <textarea class=" form-control" id="text-area" rows="3" name="fasilitas"></textarea>
+                                <label>fasilitas</label>
+                                <textarea class=" form-control ckeditor" id="fasilitas" rows="3"
+                                    name="fasilitas"></textarea>
                             </div>
                             <div class=" form-group ">
                                 <label>Harga</label>
@@ -131,9 +135,12 @@ if (isset($_POST["submit"])) {
 
 
 
-    <script src=" ../Libraries/fontawesome-free/js/fontawesome.min.js "></script>
-    <script src=" ../Libraries/bootstrap/js/bootstrap.js "></script>
-    <script src=" ../Libraries/jquery/jquery-3.4.1.min.js "></script>
+    <script src="../Libraries/jquery/jquery-3.4.1.min.js "></script>
+    <script src="../Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../Libraries/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../Libraries/sweetalert2-master/dist/sweetalert2.all.min.js"></script>
+    <script src="../Libraries/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="../Libraries/bootstrap/js/bootstrap.js "></script>
 </body>
 
 </html>

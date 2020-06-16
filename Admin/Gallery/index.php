@@ -223,13 +223,13 @@
             $("#btn-edit-gambar").attr("id", " btn-upload")
             close();
         })
-        $("#btn-edit").click(function(e) {
+        $("#btn-edit").on("click", function(e) {
             e.preventDefault();
         })
         // mengubah perilaku dari link
 
         $(".btn-edit").attr("disabled", true)
-        $('.myCheck').change(function() {
+        $('.myCheck').on("change", function() {
             let data = [];
             $(':checkbox:checked').each(function(i) {
                 data[i] = $(this).val();
@@ -247,7 +247,7 @@
 
             }
         })
-        $(".btn-delete").click(function(e) {
+        $(".btn-delete").on("click", function(e) {
             let id = [];
             Swal.fire({
                 title: 'Are you sure?',
@@ -317,7 +317,7 @@
             })
             e.preventDefault();
         })
-        $(".btn-edit").click(function(e) {
+        $(".btn-edit").on("click", function(e) {
             $('select').attr("disabled", "disabled")
             let valueCheckbox = []
             let dataImage;
@@ -353,7 +353,7 @@
                 enabled();
                 $("#btn-upload").attr("id", "btn-edit-gambar")
 
-                $("#input_file").change(function() {
+                $("#input_file").on("change", function() {
                     $("#btn-edit-gambar").removeAttr("disabled");
                     $("#btn-edit-gambar").removeClass("btn-secondary");
                     $("#btn-edit-gambar").addClass("btn-primary");
@@ -395,7 +395,7 @@
                         formData.append("id", idtravel);
 
                         // upload gambar
-                        $('#btn-edit-gambar').click(function() {
+                        $('#btn-edit-gambar').on("click", function() {
                             fetch('edit.php', {
                                 method: "POST",
                                 body: formData
@@ -440,7 +440,7 @@
             e.preventDefault()
         })
 
-        $('#btn-plus').click(function(e) {
+        $('#btn-plus').on("click", function(e) {
             $("#spanTitle").hide();
             $("#modalLabel").html("Tambah Gallery");
             $('select').removeAttr("disabled");
@@ -456,7 +456,7 @@
         $('#image-preview').hide();
         // set input file disable
         disabled();
-        $('#paket_travel_id').change(function() {
+        $('#paket_travel_id').on("change", function() {
             // cek apakah value default
             if (this.value == 'default') {
                 disabled();
@@ -466,7 +466,7 @@
                 let id = this.value;
                 enabled();
                 // memilih gallery
-                $('#input_file').change(function(e) {
+                $('#input_file').on("change", function(e) {
                     $("#btn-upload").removeAttr("disabled");
                     $("#btn-upload").removeClass("btn-secondary");
                     $("#btn-upload").addClass("btn-primary");
@@ -500,7 +500,7 @@
                         formData1.set("image", file);
                         formData1.set("id", id);
 
-                        $("#btn-upload").click(function() {
+                        $("#btn-upload").on("click", function() {
                             fetch('tambah.php', {
                                 method: "POST",
                                 body: formData1
@@ -555,27 +555,27 @@
                 let data = responseText
                 console.log(data)
                 let items = data.map(data => `
-                <tr id="${data.id}">
-                    <td align="center">${data.title}</td>
-                    <td align="center"><img src="../img/paket/${data.image}"style="width: 150px; height: 100px;">
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-sm btn-secondary btn-edit" data-toggle="modal" data-target="#galleryModal" data-id="${data.paket_travel_id}">
-                                <i class="fas fa-pencil-alt fa-2x"></i>
-                        </button>
+                    <tr id="${data.id}">
+                        <td align="center">${data.title}</td>
+                        <td align="center"><img src="../img/paket/${data.image}"style="width: 150px; height: 100px;">
+                        </td>
+                        <td align="center">
+                            <button class="btn btn-sm btn-secondary btn-edit" data-toggle="modal" data-target="#galleryModal" data-id="${data.paket_travel_id}">
+                                    <i class="fas fa-pencil-alt fa-2x"></i>
+                            </button>
 
-                        <button class="btn btn-sm btn-danger btn-delete" name="delete" type="submit">
-                                <i class="fas fa-trash-alt fa-2x"></i></a>
-                        </button>
+                            <button class="btn btn-sm btn-danger btn-delete" name="delete" type="submit">
+                                    <i class="fas fa-trash-alt fa-2x"></i></a>
+                            </button>
 
 
 
-                        <div class="form-check-inline" style=" margin-top: 5px; position: absolute; margin-left: 5px;">
-                            <input class="form-check-input myCheck" type="checkbox" value="${data.id}" data-id="${data.paket_travel_id}" data-image="${data.image}" name="checkbox[]" style="width: 25px; height: 25px;">
-                        </div>
-                    </td>
-                </tr>
-        `)
+                            <div class="form-check-inline" style=" margin-top: 5px; position: absolute; margin-left: 5px;">
+                                <input class="form-check-input myCheck" type="checkbox" value="${data.id}" data-id="${data.paket_travel_id}" data-image="${data.image}" name="checkbox[]" style="width: 25px; height: 25px;">
+                            </div>
+                        </td>
+                    </tr>
+                `)
                 $("#bodyTabel").html(items)
                 event();
             })
