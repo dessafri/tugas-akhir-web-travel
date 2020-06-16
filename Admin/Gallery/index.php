@@ -170,7 +170,6 @@
         })
         .then(responseJson => {
             let data = responseJson
-            console.log(data)
             let items = data.map(data => `
                 <tr id="${data.id}">
                     <td align="center">${data.title}</td>
@@ -440,19 +439,7 @@
             }
             e.preventDefault()
         })
-        $("#cari").on("keyup", function() {
-            let keyword = this.value;
-            let formData = new FormData();
-            formData.append("keyword", keyword);
-            fetch('cari.php', {
-                method: "POST",
-                body: formData
-            }).then(response => {
-                return response.json();
-            }).then(responseText => {
-                console.log(responseText)
-            })
-        })
+
         $('#btn-plus').click(function(e) {
             $("#spanTitle").hide();
             $("#modalLabel").html("Tambah Gallery");
@@ -554,6 +541,44 @@
                 })
             }
 
+        })
+        $("#cari").on("keyup", function() {
+            let keyword = this.value;
+            let formData = new FormData();
+            formData.append("keyword", keyword);
+            fetch('cari.php', {
+                method: "POST",
+                body: formData
+            }).then(response => {
+                return response.json();
+            }).then(responseText => {
+                let data = responseText
+                console.log(data)
+                let items = data.map(data => `
+                <tr id="${data.id}">
+                    <td align="center">${data.title}</td>
+                    <td align="center"><img src="../img/paket/${data.image}"style="width: 150px; height: 100px;">
+                    </td>
+                    <td align="center">
+                        <button class="btn btn-sm btn-secondary btn-edit" data-toggle="modal" data-target="#galleryModal" data-id="${data.paket_travel_id}">
+                                <i class="fas fa-pencil-alt fa-2x"></i>
+                        </button>
+
+                        <button class="btn btn-sm btn-danger btn-delete" name="delete" type="submit">
+                                <i class="fas fa-trash-alt fa-2x"></i></a>
+                        </button>
+
+
+
+                        <div class="form-check-inline" style=" margin-top: 5px; position: absolute; margin-left: 5px;">
+                            <input class="form-check-input myCheck" type="checkbox" value="${data.id}" data-id="${data.paket_travel_id}" data-image="${data.image}" name="checkbox[]" style="width: 25px; height: 25px;">
+                        </div>
+                    </td>
+                </tr>
+        `)
+                $("#bodyTabel").html(items)
+                event();
+            })
         })
     }
     </script>

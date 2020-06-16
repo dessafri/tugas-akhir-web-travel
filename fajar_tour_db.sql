@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Bulan Mei 2020 pada 17.17
+-- Waktu pembuatan: 16 Jun 2020 pada 15.05
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.5
 
@@ -32,6 +32,15 @@ CREATE TABLE `gallery` (
   `paket_travel_id` int(11) NOT NULL,
   `image` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `paket_travel_id`, `image`) VALUES
+(29, 1, '5ee8789289949.jpg'),
+(52, 2, '5ee8bdf4d1a41.jpg'),
+(53, 2, '5ee8be007109a.jpg');
 
 -- --------------------------------------------------------
 
@@ -114,6 +123,12 @@ INSERT INTO `users` (`id`, `nama`, `username`, `email`, `no_telp`, `image`, `rol
 --
 
 --
+-- Indeks untuk tabel `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `paket_travel`
 --
 ALTER TABLE `paket_travel`
@@ -128,6 +143,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT untuk tabel `paket_travel`
