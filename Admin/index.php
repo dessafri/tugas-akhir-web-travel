@@ -104,9 +104,9 @@ require("../functions/functions.php")
 
 
 
+    <script src="Libraries/jquery/jquery-3.4.1.min.js "></script>
     <script src="Libraries/fontawesome-free/js/fontawesome.min.js"></script>
     <script src="Libraries/bootstrap/js/bootstrap.js "></script>
-    <script src="Libraries/jquery/jquery-3.4.1.min.js "></script>
 </body>
 
 </html>

@@ -28,7 +28,11 @@ function deletePaketTravel($id)
 {
     global $conn;
 
-    mysqli_query($conn, "DELETE  FROM paket_travel WHERE id='$id'");
+    $id = explode(",", $id);
+
+    foreach ($id as $data_id) {
+        mysqli_query($conn, "DELETE  FROM paket_travel WHERE id='$data_id'");
+    }
 
     return mysqli_affected_rows($conn);
 }
@@ -40,12 +44,12 @@ function putDataTravel($data)
 
     $title = htmlspecialchars($data["title"]);
     $location = htmlspecialchars($data["location"]);
-    $about = htmlspecialchars($data["about"]);
+    $about = $data["about"];
     $keberangkatan = "Requested";
-    $duration = htmlspecialchars($data["duration"]);
+    $duration = $data["duration"];
     $orang = htmlspecialchars($data["orang"]);
-    $destination = htmlspecialchars($data["destination"]);
-    $fasilitas = htmlspecialchars($data["fasilitas"]);
+    $destination = $data["destination"];
+    $fasilitas = $data["fasilitas"];
     $harga = htmlspecialchars($data["harga"]);
 
     $query = "INSERT INTO paket_travel VALUES ('','$title','$location','$about','$keberangkatan','$duration','$orang','$destination','$fasilitas','$harga')";
@@ -98,6 +102,7 @@ function register($data)
     $email = $data["email"];
     $password = $data["password"];
     $re_password = $data["re-password"];
+    $image = "USER.JPG";
     $usernameDb = mysqli_fetch_assoc(mysqli_query($conn, "SELECT username FROM users"));
     $emailDb = mysqli_fetch_assoc(mysqli_query($conn, "SELECT email FROM users"));
 
@@ -128,25 +133,18 @@ function register($data)
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO users VALUES('','','$username','$email','','','','$password')";
+        $query = "INSERT INTO users VALUES('','','$username','$email','','$image','USER','$password')";
 
         mysqli_query($conn, $query);
 
         return mysqli_affected_rows($conn);
     }
-
-
-
-
-    // echo "<script>
-    // console.log('sukses')
-    // </script>";
 }
 
 function login($data)
 {
     global $conn;
-
+    session_start();
     $username = $data["username"];
     $password = $data["password"];
 
@@ -156,6 +154,8 @@ function login($data)
         $row = mysqli_fetch_assoc($result);
 
         if (password_verify($password, $row["password"])) {
+            $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT id FROM users WHERE username = '$username'"));
+            $_SESSION["id"] = $result["id"];
             header("location: index.php");
             exit;
         }
@@ -192,8 +192,6 @@ function updateGambarTravel($data, $gambar)
     // var_dump($id_travel);
     $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT image  FROM gallery WHERE id='$id_travel'"));
     $result = $result["image"];
-
-    var_dump($namaFile);
 
     mysqli_query($conn, "UPDATE gallery SET 
                                         image='$namafileBaru'
@@ -237,8 +235,6 @@ function deleteGalleryTravel($id)
 
     foreach ($data as $id_data) {
 
-        var_dump($id_data);
-
         $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT image  FROM gallery WHERE id='$id_data'"));
         $result = $result["image"];
         unlink("../img/paket/" . $result);
@@ -252,15 +248,63 @@ function updateTransaksi($data)
 {
     global $conn;
     $id = $data["id"];
-    $status = $data["status_transaksi"];
+    $status = $data["status"];
+    $id = explode(",", $id);
+    foreach ($id as $data_id) {
 
-    $query = " UPDATE transaksi SET 
+        $query = "UPDATE transaksi SET 
                         status = '$status'
-                        WHERE id='$id'
-    ";
-
-    mysqli_query($conn, $query);
-
-
+                        WHERE id='$data_id'";
+        mysqli_query($conn, $query);
+    }
     return mysqli_affected_rows($conn);
+}
+function updateAkun($data)
+{
+    global $conn;
+
+    $id = $data["id"];
+    $nama = $data["nama"];
+    $username = $data["username"];
+    $email = $data["email"];
+    $no_telp = $data["no_telp"];
+    $image = $data["image"];
+
+    mysqli_query($conn, "UPDATE users SET 
+                                        nama='$nama',
+                                        username='$username',
+                                        email='$email',
+                                        no_telp='$no_telp',
+                                        image='$image'
+
+                                        WHERE id='$id'");
+}
+
+function deleteTransaksi($id)
+{
+    global $conn;
+
+    $data = $id;
+
+    foreach ($data as $id_data) {
+
+        mysqli_query($conn, "DELETE  FROM transaksi WHERE id='$id_data'");
+        mysqli_query($conn, "DELETE  FROM transaksi_detail WHERE transaksi_id='$id_data'");
+    }
+
+    // return mysqli_affected_rows($conn);
+}
+function updatePassword($data)
+{
+    global $conn;
+
+    $username = $data["username"];
+    $password = $data["password"];
+
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    mysqli_query($conn, "UPDATE users SET 
+                                        password='$password'
+
+                                        WHERE username='$username'");
 }

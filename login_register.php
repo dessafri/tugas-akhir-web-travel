@@ -2,10 +2,18 @@
 
 require("functions/functions.php");
 
+session_start();
+
+if (isset($_SESSION["id"])) {
+    echo "<script>
+    window.location = 'index.php'
+    </script>";
+}
+
 if (isset($_POST["submit_register"])) {
 
     if (register($_POST) > 0) {
-        echo "<script>alert('sukses')</script>";
+        echo "<script>alert('Register Berhasil')</script>";
     } else {
         echo mysqli_error($conn);
     }
@@ -23,7 +31,7 @@ if (isset($_POST["submit_register"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Register</title>
-    <link rel="stylesheet" href="Libraries/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="Admin/Libraries/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="Libraries/fontawesome-free/css/all.min.css">
     <!-- main style -->
     <link rel="stylesheet" href="Style/style.css">
@@ -32,15 +40,15 @@ if (isset($_POST["submit_register"])) {
 <body>
     <div class="login-register">
         <div class="container d-flex flex-wrap" style=" height: 100vh;">
-            <section class="title d-flex justify-content-between w-100" style="margin-top: 30px;">
-                <img src="img/logo.png" alt="logo" class="order-2" style="width: 150px; height: 100px;">
+            <section class="title d-flex justify-content-between w-100">
+                <img src="img/logoo.png" alt="logo" class="order-2" style="width: 150px; height: 100px;">
                 <div class="title order-1 col-4">
                     <h1>EXPLORE <span>INDONESIA</span></h1>
                     <h1><span>WITH</span> US</h1>
                 </div>
             </section>
             <section class="main d-flex w-80 " id="main-login">
-                <div class="container d-flex" style=" width: 100%; ">
+                <div class="container d-flex" style=" width: 100%;">
                     <div class="gambar d-flex">
                         <div>
                             <img src="img/gb1.png" style="width: 230px; height: 193px;">
@@ -59,7 +67,7 @@ if (isset($_POST["submit_register"])) {
                             <button type="button" id="btn-login">Login</button>
                             <button type="button" id="btn-register">Register</button>
                         </div>
-                        <div class="form" style="display: flex; margin-top: 10px;">
+                        <div class="form" style="display: flex; margin-top: -150px;">
                             <form class="form-login" style="width: 80%; left: 150px; top: 90px;" id="login"
                                 method="POST">
                                 <div class="form-group">
@@ -71,7 +79,7 @@ if (isset($_POST["submit_register"])) {
                                     <label>Password</label>
                                 </div>
                                 <div class="forgotpassword d-flex justify-content-end mt-3">
-                                    <a href="" class="text-decoration-none">Forgot Password ?</a>
+                                    <a href="resetPassword.php" class="text-decoration-none">Forgot Password ?</a>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-login"
                                     name="submit_login"><span>LOGIN</span></button>
@@ -123,9 +131,12 @@ if (isset($_POST["submit_register"])) {
 
 
 
-    <script src=" Libraries/fontawesome-free/js/fontawesome.min.js "></script>
-    <script src=" Libraries/bootstrap/js/bootstrap.js "></script>
-    <script src=" Libraries/jquery/jquery-3.4.1.min.js "></script>
+    <script src="Admin/Libraries/jquery/jquery-3.4.1.min.js "></script>
+    <script src="Admin/Libraries/jquery-easing/jquery.easing.min.js"></script>
+    <script src="Admin/Libraries/sweetalert2-master/dist/sweetalert2.all.min.js"></script>
+    <script src="Admin/Libraries/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="Admin/Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="Admin/Libraries/bootstrap/js/bootstrap.js "></script>
 
     <script>
     let register = document.querySelector("#register");

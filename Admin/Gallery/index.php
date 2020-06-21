@@ -103,7 +103,6 @@
                                     <label for="paket_travel"></label>
                                     <select class="form-control" name="paket_travel_id" id="paket_travel_id">
                                         <option value="default" id="option-data">Pilih Paket Travel</option>
-
                                     </select>
                                 </div>
                                 <div class="img-preview">
@@ -137,15 +136,14 @@
 
 
     <script src="../Libraries/jquery/jquery-3.4.1.min.js "></script>
-    <script src="../Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../Libraries/jquery-easing/jquery.easing.min.js"></script>
     <script src="../Libraries/sweetalert2-master/dist/sweetalert2.all.min.js"></script>
     <script src="../Libraries/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="../Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../Libraries/bootstrap/js/bootstrap.js "></script>
-    <!-- <script src="script/script.js"></script> -->
     <script>
     fetch('../Paket-travel/dataTravel.php', {
-            method: 'POST'
+            method: 'GET'
         })
         .then(response => {
             return response.json();
@@ -156,19 +154,19 @@
                 `
             <option value="${data.id}">${data.title}</option>
             `
-
             )
             $("#paket_travel_id").append(option)
         })
 
     fetch('data.php', {
-            method: 'POST'
+            method: 'GET'
         })
         .then(response => {
             return response.json();
         })
         .then(responseJson => {
             let data = responseJson
+            console.log(data)
             let items = data.map(data => `
                 <tr id="${data.id}">
                     <td align="center">${data.title}</td>
@@ -178,13 +176,9 @@
                         <button class="btn btn-sm btn-secondary btn-edit" data-toggle="modal" data-target="#galleryModal" data-id="${data.paket_travel_id}">
                                 <i class="fas fa-pencil-alt fa-2x"></i>
                         </button>
-
                         <button class="btn btn-sm btn-danger btn-delete" name="delete" type="submit">
                                 <i class="fas fa-trash-alt fa-2x"></i></a>
                         </button>
-
-
-
                         <div class="form-check-inline" style=" margin-top: 5px; position: absolute; margin-left: 5px;">
                             <input class="form-check-input myCheck" type="checkbox" value="${data.id}" data-id="${data.paket_travel_id}" data-image="${data.image}" name="checkbox[]" style="width: 25px; height: 25px;">
                         </div>
@@ -228,6 +222,8 @@
         // mengubah perilaku dari link
 
         $(".btn-edit").attr("disabled", true)
+        $(".btn-delete").attr("disabled", true)
+
         $('.myCheck').on("change", function() {
             let data = [];
             $(':checkbox:checked').each(function(i) {
@@ -236,13 +232,18 @@
 
             if (data.length == 0) {
                 $(".btn-edit").attr("disabled", true)
+                $(".btn-delete").attr("disabled", true)
 
             }
             if (data.length == 1) {
                 $(".btn-edit").removeAttr("disabled")
+                $(".btn-delete").removeAttr("disabled")
 
-            } else {
+
+            }
+            if (data.length > 1) {
                 $(".btn-edit").attr("disabled", true)
+                $(".btn-delete").removeAttr("disabled")
 
             }
         })
@@ -356,21 +357,18 @@
                     $("#btn-edit-gambar").removeAttr("disabled");
                     $("#btn-edit-gambar").removeClass("btn-secondary");
                     $("#btn-edit-gambar").addClass("btn-primary");
-                    // membaca inputan gambar
                     let file = this.files[0];
                     let fileSize = this.files[0].size;
+
+                    // membaca inputan gambar
                     let reader = new FileReader();
                     reader.onload = function(e) {
                         setTimeout(() => {
-                            $("#spanTitle").show();
                             $("#image-after").show();
-                            $('#image-after').attr('src', e.target
-                                .result);
-                        }, 750);
-                        // $('#image-preview').attr('src', e.target.result);
-
+                            $("#spanTitle").show();
+                            $('#image-after').attr('src', e.target.result);
+                        }, 1000);
                     }
-
                     reader.readAsDataURL(file);
                     if (fileSize > 2000000) {
                         Swal.fire({
@@ -436,6 +434,12 @@
                     }
                 })
             }
+            $("#image-preview").after(`<img src="" alt="image-preview" id="image-after"
+                                        style="width: 150px; height: 100px;">`);
+            $("#image-preview").after(
+                `<span style="margin-left: 30px; margin-right: 30px;" id="spanTitle">Di ganti</span>`)
+            $("#image-after").hide();
+            $("#spanTitle").hide();
             e.preventDefault()
         })
 
@@ -543,17 +547,17 @@
         })
         $("#cari").on("keyup", function() {
             let keyword = this.value;
-            let formData = new FormData();
-            formData.append("keyword", keyword);
-            fetch('cari.php', {
-                method: "POST",
-                body: formData
-            }).then(response => {
-                return response.json();
-            }).then(responseText => {
-                let data = responseText
-                console.log(data)
-                let items = data.map(data => `
+            const incrementCounter = () => {
+                let formData = new FormData();
+                formData.append("keyword", keyword);
+                fetch('cari.php', {
+                    method: "POST",
+                    body: formData
+                }).then(response => {
+                    return response.json();
+                }).then(responseText => {
+                    let data = responseText
+                    let items = data.map(data => `
                     <tr id="${data.id}">
                         <td align="center">${data.title}</td>
                         <td align="center"><img src="../img/paket/${data.image}"style="width: 150px; height: 100px;">
@@ -567,18 +571,32 @@
                                     <i class="fas fa-trash-alt fa-2x"></i></a>
                             </button>
 
-
-
                             <div class="form-check-inline" style=" margin-top: 5px; position: absolute; margin-left: 5px;">
                                 <input class="form-check-input myCheck" type="checkbox" value="${data.id}" data-id="${data.paket_travel_id}" data-image="${data.image}" name="checkbox[]" style="width: 25px; height: 25px;">
                             </div>
                         </td>
                     </tr>
                 `)
-                $("#bodyTabel").html(items)
-                event();
-            })
+                    $("#bodyTabel").html(items)
+                    event();
+                })
+            }
+            const debounce = (fn, delay) => {
+                return () => {
+                    let timer;
+                    clearTimeout(timer);
+                    timer = setTimeout(() => {
+                        fn();
+                    }, delay);
+                };
+            };
+
+            const debounceProductSearch = debounce(incrementCounter, 1000);
+            debounceProductSearch();
         })
+
+
+
     }
     </script>
 
