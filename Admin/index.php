@@ -1,17 +1,42 @@
 <?php
 
-require("../functions/functions.php")
+require("../functions/functions.php");
+session_start();
 
+if ($_SESSION["id"] == "") {
+    header("location: ../index.php");
+} else {
+    $id = $_SESSION["id"];
+    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT roles FROM users WHERE id ='$id'"));
+    $roles = $result["roles"];
+    if ($roles == "USER") {
+        header("Location: ../index.php");
+    }
+}
+
+$paket_travel = query("SELECT COUNT(id) FROM paket_travel");
+$pending = query("SELECT COUNT(id) FROM transaksi WHERE status = 'PENDING'");
+$success = query("SELECT COUNT(id) FROM transaksi WHERE status = 'SUCCESS'");
+$total = query("SELECT SUM(total_transaksi) FROM transaksi");
+$paket;
+foreach ($paket_travel as $data) {
+    $paket = $data["COUNT(id)"];
+}
+
+$statusPending;
+foreach ($pending as $data) {
+    $statusPending = $data["COUNT(id)"];
+}
+$statusSuccess;
+foreach ($success as $data) {
+    $statusSuccess = $data["COUNT(id)"];
+}
+$totalTransaksi;
+foreach ($total as $data) {
+    $totalTransaksi = $data["SUM(total_transaksi)"];
+}
 
 ?>
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,22 +53,22 @@ require("../functions/functions.php")
         <div class="sidebar">
             <div class="container">
                 <nav class="navbar navbar-light" style="background-color: #4e73df;">
-                    <a class="navbar-brand" href="index.html"> Fajar Tour And Travel
+                    <a class="navbar-brand" href="index.php"> Fajar Tour And Travel
                     </a>
                 </nav>
                 <div class="navigation">
                     <hr class="my-1">
                     <div class="dashboard">
-                        <a href="index.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
+                        <a href="index.php"><i class="fas fa-tachometer-alt"></i>Dashboard</a></h5>
                     </div>
                     <div class="paket-travel">
                         <a href="Paket-travel/index.php"><i class="fas fa-bus"></i>Paket Travel</a></h5>
                     </div>
                     <div class="gallery">
-                        <a href="Gallery/index.html"><i class="fas fa-images"></i></i>Gallery</a></h5>
+                        <a href="Gallery/index.php"><i class="fas fa-images"></i></i>Gallery</a></h5>
                     </div>
                     <div class="transaksi">
-                        <a href="Transaksi/index.html"><i class="fas fa-dollar-sign"></i>Transaksi</a></h5>
+                        <a href="Transaksi/index.php"><i class="fas fa-dollar-sign"></i>Transaksi</a></h5>
                     </div>
                     <hr class="my-1">
                 </div>
@@ -52,13 +77,17 @@ require("../functions/functions.php")
         <div class="main_content" style="flex: 5;">
             <div class="header">
                 <div class="user">
-                    <span>Des Safri</span>
-                    <img src="img/dummy.jpg" id="admin-avatar">
+                    <?php
+                    $id = $_SESSION["id"];
+                    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id ='$id'"));
+                    $username = $result["username"];  ?>
+                    <span id="admin-avatar" style="cursor: pointer;"><?= $username; ?></span>
                     <div class="floating-nav">
                         <div class="nav">
                             <div>
-                                <a href="" class="profile"><i class="fas fa-user-alt"></i>Profile</a> <br>
-                                <a href="" id="logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                                <a href="../myAccount.php?id=<?= $_SESSION["id"] ?>" class="profile"><i
+                                        class="fas fa-user-alt"></i>Profile</a> <br>
+                                <a href="../logout.php" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </div>
                         </div>
                     </div>
@@ -70,23 +99,20 @@ require("../functions/functions.php")
                     <div class="menu">
                         <div class="total-revenue">
                             <span class="text-center">Total income</span>
-                            <span class="value"><i class="fas fa-dollar-sign "
-                                    style="  color: #818181; margin-right: 8px;"></i>Rp.70.000.000</span>
+                            <span class="value text-center">Rp.
+                                <?= number_format($totalTransaksi, 2, ',', '.') ?></span>
                         </div>
                         <div class="revenue-month">
-                            <span class="text-center">Income in Month</span>
-                            <span class="value"><i class="fas fa-dollar-sign "
-                                    style=" color: #818181; margin-right: 8px;"></i>Rp.10.000.000</span>
+                            <span class="text-center">Paket Yang Tersedia</span>
+                            <span class="value text-center"><?= $paket; ?> Paket Travel</span>
                         </div>
                         <div class="sukses">
                             <span class="text-center">Transactions Success</span>
-                            <span class="value"><i class="fas fa-check "
-                                    style=" color: #818181; margin-right: 8px;"></i>34</span>
+                            <span class="value text-center"><?= $statusSuccess; ?> Transaksi</span>
                         </div>
                         <div class="pending">
                             <span class="text-center">Transactions pending</span>
-                            <span class="value"><i class="fas fa-spinner "
-                                    style=" color: #818181; margin-right: 8px;"></i>10</span>
+                            <span class="value text-center"><?= $statusPending; ?> Transaksi</span>
                         </div>
                     </div>
                 </div>
@@ -104,9 +130,12 @@ require("../functions/functions.php")
 
 
 
-    <script src="Libraries/jquery/jquery-3.4.1.min.js "></script>
-    <script src="Libraries/fontawesome-free/js/fontawesome.min.js"></script>
-    <script src="Libraries/bootstrap/js/bootstrap.js "></script>
+    <script src="../Libraries/jquery/jquery-3.4.1.min.js "></script>
+    <script src="../Libraries/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../Libraries/sweetalert2-master/dist/sweetalert2.all.min.js"></script>
+    <script src="../Libraries/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="../Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../Libraries/bootstrap/js/bootstrap.js "></script>
 </body>
 
 </html>

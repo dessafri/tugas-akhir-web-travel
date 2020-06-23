@@ -4,7 +4,7 @@ session_start();
 require("functions/functions.php");
 
 if ($_SESSION["id"] == "") {
-    header("location: index.html");
+    header("location: index.php");
 }
 
 
@@ -155,10 +155,13 @@ if (isset($_SESSION["id"])) {
                     <td align="center">${data.total_transaksi}</td>
                     <td align="center">${data.status}</td>
                     <td align="center">
-                        <button class="btn btn-sm btn-primary btn-view" data-toggle="modal" data-target="#galleryModal">
+                        <button class="btn btn-sm btn-primary btn-view ${data.status}" data-toggle="modal" data-target="#galleryModal">
                                 <i class="fas fa-eye fa-2x"></i>
                         </button>
-                        <button class="btn btn-sm btn-danger btn-delete" name="delete" type="submit">
+                        <button class="btn btn-sm btn-secondary btn-edit ${data.status}" data-toggle="modal" data-target="#galleryModal">
+                                <i class="fas fa-pencil-alt fa-2x"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger btn-delete ${data.status}" name="delete" type="submit">
                                 <i class="fas fa-trash-alt fa-2x"></i></a>
                         </button>
                         <div class="form-check-inline" style=" margin-top: 5px; position: absolute; margin-left: 5px;">
@@ -272,58 +275,14 @@ if (isset($_SESSION["id"])) {
             e.preventDefault();
         })
         $(".btn-edit").on("click", function() {
-            let id = [];
-            $("#modalLabel").html("Edit Status Transaksi")
-            $("#modalBody").html(`
-                <div class="form-group">
-                    <label for="paket_travel"></label>
-                    <select class="form-control" name="paket_travel_id" id="paket_travel_id">
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block btn-update" style="margin-top: 10px;" name="submit">Update</button>
-            `)
-            $(":checkbox:checked").each(function(i) {
-                id[i] = $(this).val();
-            })
-            $("#paket_travel_id").html(`
-            <option value="SUCCESS" id="option-data">SUCCESS</option>
-            `)
-            $(".btn-update").on("click", function() {
-                let status = $("#paket_travel_id").val();
-                let formData = new FormData();
-                formData.append("id", id);
-                formData.append("status", status);
-
-                fetch("edit.php", {
-                        method: "POST",
-                        body: formData
-                    })
-                    .then(res => {
-                        return res.text()
-                    })
-                    .then(resJson => {
-                        Swal.fire({
-                            title: 'Berhasil',
-                            text: 'Status Berhasil Di Ubah !',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 1000
-
-                        })
-                        setTimeout(() => {
-                            $("#galleryModal")
-                                .modal(
-                                    "hide");
-                            setTimeout(() => {
-                                refresh();
-                            }, 500);
-                        }, 1500);
-                    })
-            })
+            location.href = "keranjang.php"
         })
-        $(".IN_CART").css("display", "none")
-        $(".SUCCESS").css("display", "none")
-
+        if ($(".btn-view").hasClass("SUCCESS")) {
+            $(".btn-edit , .btn-danger").css("display", "none");
+        }
+        if ($(".btn-view").hasClass("PENDING")) {
+            $(".btn-edit").css("display", "none");
+        }
         $(".btn-view").on("click", function() {
             $("#modalLabel").html("View Transaksi")
             let id = [];

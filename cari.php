@@ -61,8 +61,8 @@ if (isset($_SESSION["id"])) {
                     Akun Saya
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="myAccount.php">Edit Akun</a>
-                    <a class="dropdown-item" href="#">Transaksi Saya</a>
+                    <a class="dropdown-item" href="myAccount.php?id=<?= $_SESSION["id"] ?>">Edit Akun</a>
+                    <a class="dropdown-item" href="myTransactions.php?id=<?= $_SESSION["id"] ?>">Transaksi Saya</a>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
             </div>
@@ -73,6 +73,15 @@ if (isset($_SESSION["id"])) {
                     style="width: 126px; height: 43px; margin: 0 10px;"><a href="login_register.php"
                         style="color: white; text-decoration: none;">
                         Login</a>
+                </button>
+            </div>
+            <?php endif; ?>
+            <?php if ($roles == "ADMIN") : ?>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg"
+                    style="width: 126px; height: 43px; margin: 0 10px;"><a href="Admin/index.php"
+                        style="color: white; text-decoration: none;">
+                        Admin</a>
                 </button>
             </div>
             <?php endif; ?>

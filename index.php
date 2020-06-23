@@ -75,6 +75,15 @@ if (isset($_SESSION["id"])) {
                 </button>
             </div>
             <?php endif; ?>
+            <?php if ($roles == "ADMIN") : ?>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg"
+                    style="width: 126px; height: 43px; margin: 0 10px;"><a href="Admin/index.php"
+                        style="color: white; text-decoration: none;">
+                        Admin</a>
+                </button>
+            </div>
+            <?php endif; ?>
         </nav>
     </div>
     <main>

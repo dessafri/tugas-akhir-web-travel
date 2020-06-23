@@ -144,7 +144,6 @@ function register($data)
 function login($data)
 {
     global $conn;
-    session_start();
     $username = $data["username"];
     $password = $data["password"];
 
@@ -268,14 +267,12 @@ function updateAkun($data)
     $username = $data["username"];
     $email = $data["email"];
     $no_telp = $data["no_telp"];
-    $image = $data["image"];
 
     mysqli_query($conn, "UPDATE users SET 
                                         nama='$nama',
                                         username='$username',
                                         email='$email',
-                                        no_telp='$no_telp',
-                                        image='$image'
+                                        no_telp='$no_telp'
 
                                         WHERE id='$id'");
 }
@@ -307,4 +304,29 @@ function updatePassword($data)
                                         password='$password'
 
                                         WHERE username='$username'");
+}
+
+function storeKeranjang($data)
+{
+    global $conn;
+    $idtravel = $data["idtravel"];
+    $userid = $data["userid"];
+    $harga = $data["harga"];
+    $status = "IN_CART";
+    $id_transaksi = $num_str = sprintf("TRSK" . mt_rand(1, 999999));
+
+    mysqli_query($conn, "INSERT INTO transaksi VALUES('$id_transaksi','$userid','$harga','$status')");
+    mysqli_query($conn, "INSERT INTO transaksi_detail VALUES ('','$id_transaksi','$idtravel')");
+}
+function sukses($data)
+{
+    global $conn;
+    $id = $data["id"];
+    $status = "PENDING";
+
+
+    $query = "UPDATE transaksi SET 
+                        status = '$status'
+                        WHERE id='$id'";
+    mysqli_query($conn, $query);
 }

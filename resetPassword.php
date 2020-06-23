@@ -32,13 +32,16 @@ if (isset($_SESSION["id"])) {
                     <h1><span>WITH</span> US</h1>
                 </div>
             </section>
-            <section class="main" style="background-color: rgb(201, 201, 201); width: 80%; margin-left: 80px; height: 40vh;" id="main">
+            <section class="main"
+                style="background-color: rgb(201, 201, 201); width: 80%; margin-left: 80px; height: 40vh;" id="main">
                 <h3 style="padding-top: 20px; padding-left: 30px; ">Reset Password</h3>
                 <div class="form-group" style="padding-top: 20px; padding-left: 30px;">
                     <label for="username">Masukkan Username Kamu</label>
-                    <input type="text" name="username" class="form-control" style="width: 50%;" id="username" aria-describedby="Help">
+                    <input type="text" name="username" class="form-control" style="width: 50%;" id="username"
+                        aria-describedby="Help">
                 </div>
-                <button type="button" name="submit" id="btn_cek_username" style="margin-left: 30px;" class="btn btn-primary">Cek
+                <button type="button" name="submit" id="btn_cek_username" style="margin-left: 30px;"
+                    class="btn btn-primary">Cek
                     Username</button>
             </section>
         </div>
@@ -54,17 +57,17 @@ if (isset($_SESSION["id"])) {
     <script src="Admin/Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="Admin/Libraries/bootstrap/js/bootstrap.js "></script>
     <script>
-        $("#btn_cek_username").on("click", function() {
-            let username = $("#username").val();
-            fetch(`dataResetpassword.php?username=${username}`, {
-                    method: "GET"
-                })
-                .then(res => {
-                    return res.json();
-                })
-                .then(resjson => {
-                    if (resjson == "success") {
-                        $("#main").html(`
+    $("#btn_cek_username").on("click", function() {
+        let username = $("#username").val();
+        fetch(`dataResetpassword.php?username=${username}`, {
+                method: "GET"
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(resjson => {
+                if (resjson == "success") {
+                    $("#main").html(`
                     
                     <h3 style="padding-top: 20px; padding-left: 30px; ">Reset Password</h3>
                 <div class="form-group" style="padding-top: 20px; padding-left: 30px;">
@@ -81,55 +84,55 @@ if (isset($_SESSION["id"])) {
                     class="btn btn-primary">Cek
                     Username</button>
                     `)
-                        $("#main").css("height", "50vh")
-                        $("#btn_ganti").on("click", function() {
-                            let password = $("#password").val();
-                            let konfirmasiPassword = $("#konfirmasiPassword").val();
-                            let result = password.localeCompare(konfirmasiPassword);
-                            if (result == false) {
-                                let formData = new FormData();
-                                formData.append("username", username);
-                                formData.append("password", password);
-                                fetch("updatePassword.php", {
-                                        method: "POST",
-                                        body: formData
-                                    })
-                                    .then(res => {
-                                        return res.json()
-                                    })
-                                    .then(resJson => {
-                                        Swal.fire({
-                                            title: 'Oppss...',
-                                            text: 'Password Berhasil di Ganti ..',
-                                            icon: 'success'
-                                        }).then(function() {
-
-                                            window.location = "login_register.php"
-                                        })
-                                    })
-
-                            } else {
-                                Swal.fire({
-                                    title: 'Oppss...',
-                                    text: 'Konfirmasi Sandi Tidak Cocok..',
-                                    icon: 'error'
-
+                    $("#main").css("height", "50vh")
+                    $("#btn_ganti").on("click", function() {
+                        let password = $("#password").val();
+                        let konfirmasiPassword = $("#konfirmasiPassword").val();
+                        let result = password.localeCompare(konfirmasiPassword);
+                        if (result == false) {
+                            let formData = new FormData();
+                            formData.append("username", username);
+                            formData.append("password", password);
+                            fetch("updatePassword.php", {
+                                    method: "POST",
+                                    body: formData
                                 })
-                            }
+                                .then(res => {
+                                    return res.json()
+                                })
+                                .then(resJson => {
+                                    Swal.fire({
+                                        title: 'YAY...',
+                                        text: 'Password Berhasil di Ganti ..',
+                                        icon: 'success'
+                                    }).then(function() {
+
+                                        window.location = "login_register.php"
+                                    })
+                                })
+
+                        } else {
+                            Swal.fire({
+                                title: 'Oppss...',
+                                text: 'Konfirmasi Sandi Tidak Cocok..',
+                                icon: 'error'
+
+                            })
+                        }
 
 
-                        })
-                    } else {
-                        Swal.fire({
-                            title: 'Oppss...',
-                            text: 'Username tidak di temukan ..',
-                            icon: 'error'
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Oppss...',
+                        text: 'Username tidak di temukan ..',
+                        icon: 'error'
 
-                        })
-                        $("#username").val("")
-                    }
-                })
-        })
+                    })
+                    $("#username").val("")
+                }
+            })
+    })
     </script>
 </body>
 

@@ -80,7 +80,7 @@ $data = query("SELECT * FROM users WHERE id = '$id' ");
                     Akun Saya
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="myAccount.php">Edit Akun</a>
+                    <a class="dropdown-item" href="myAccount.php?id=<?= $_SESSION["id"] ?>">Edit Akun</a>
                     <a class="dropdown-item" href="myTransactions.php?id=<?= $_SESSION["id"] ?>">Transaksi Saya</a>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
@@ -95,17 +95,26 @@ $data = query("SELECT * FROM users WHERE id = '$id' ");
                 </button>
             </div>
             <?php endif; ?>
+            <?php if ($roles == "ADMIN") : ?>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg"
+                    style="width: 126px; height: 43px; margin: 0 10px;"><a href="Admin/index.php"
+                        style="color: white; text-decoration: none;">
+                        Admin</a>
+                </button>
+            </div>
+            <?php endif; ?>
         </nav>
     </div>
     <section class="profile">
         <div class="container">
             <h3 class="text-center">My Account</h3>
-            <div class="avatar d-flex justify-content-center">
+            <!-- <div class="avatar d-flex justify-content-center">
                 <?php foreach ($data as $data) : ?>
                 <?php $image = $data["image"]; ?>
                 <img src="imageUser/<?= $image ?>" class="mt-3" id="image-profile" data-image="<?= $image ?>"
                     style="width: 75px; height: 75px;">
-            </div>
+            </div> -->
             <section class="main-profile h-100 ">
                 <div class="content">
                     <div class="form-group">
@@ -133,13 +142,13 @@ $data = query("SELECT * FROM users WHERE id = '$id' ");
                         <input type="text" class=" form-control" value="<?= $data['no_telp'] ?>" id="no_telp"
                             name="no_telp" readonly>
                     </div>
-                    <div class="form-group" style="margin-top: 10px;">
+                    <!-- <div class="form-group" style="margin-top: 10px;">
                         <label for="input_file">Image Profile</label><br>
                         <img src="" alt="image-preview" id="image-after"
                             style="width: 150px; height: 100px; margin-bottom: 20px;">
                         <input type="file" class="form-control-file" id="input_file" name="gambar"
                             accept="image/png, image/jpeg, image/jpg" disabled>
-                    </div>
+                    </div> -->
                     <button type="submit" class=" btn btn-primary btn-ganti-profile btn-block btn-submit"
                         style="margin-top: 20px; margin-bottom: 30px;">Ganti
                         Profile</button>
@@ -159,10 +168,12 @@ $data = query("SELECT * FROM users WHERE id = '$id' ");
     <script>
     let button = $('.btn-submit');
     $("#image-after").hide();
+
     $(button).on('click', (e) => {
         // console.log(name)
-        let file;
-        file = $("#image-profile").attr("data-image")
+        $("#input_file").attr("disabled", "disabled");
+        // let image = $("#image-profile").attr("data-image");
+
         if (button.hasClass("btn-ganti-profile")) {
             setTimeout(() => {
                 $('input').removeAttr("readonly")
@@ -175,42 +186,24 @@ $data = query("SELECT * FROM users WHERE id = '$id' ");
                 $(button).addClass("btn-success");
                 $(button).html("Simpan Profile");
             }, 200);
-
-            $("#input_file").on("change", function() {
-                console.log("change")
-                file = this.files[0];
-
-                // membaca inputan gambar
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    setTimeout(() => {
-                        $("#image-after").show();
-                        $('#image-after').attr('src', e.target.result);
-                    }, 700);
-                }
-                reader.readAsDataURL(file);
-                console.log(file)
-            });
-
         } else {
+
             let id = $("#idsaya").val()
             let nama = $("#nama").val()
             let username = $("#username").val()
             let email = $("#email").val()
             let no_telp = $("#no_telp").val()
             let formData = new FormData();
-
             formData.append("id", id)
             formData.append("nama", nama)
             formData.append("username", username)
             formData.append("email", email)
             formData.append("no_telp", no_telp)
-            formData.append("image", file)
             fetch("dataAkun.php", {
                     method: "POST",
                     body: formData
                 }).then(res => {
-                    return res.json();
+                    return res.text();
                 })
                 .then(resjson => {
                     Swal.fire({

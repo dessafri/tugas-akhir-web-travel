@@ -26,6 +26,7 @@ if (isset($_SESSION["id"])) {
 
 <body>
     <div class="container">
+        <input type="hidden" id="user_id" value="<?= $_SESSION["id"] ?>">
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
             <a class="navbar-brand col-4" href="index.php">
                 <img src="img/logo.svg" width="152px" height="70px" alt="">
@@ -61,8 +62,8 @@ if (isset($_SESSION["id"])) {
                     Akun Saya
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="myAccount.php">Edit Akun</a>
-                    <a class="dropdown-item" href="#">Transaksi Saya</a>
+                    <a class="dropdown-item" href="myAccount.php?id=<?= $_SESSION["id"] ?>">Edit Akun</a>
+                    <a class="dropdown-item" href="myTransactions.php?id=<?= $_SESSION["id"] ?>">Transaksi Saya</a>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
             </div>
@@ -76,6 +77,15 @@ if (isset($_SESSION["id"])) {
                 </button>
             </div>
             <?php endif; ?>
+            <?php if ($roles == "ADMIN") : ?>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg"
+                    style="width: 126px; height: 43px; margin: 0 10px;"><a href="Admin/index.php"
+                        style="color: white; text-decoration: none;">
+                        Admin</a>
+                </button>
+            </div>
+            <?php endif; ?>
         </nav>
     </div>
 
@@ -85,7 +95,12 @@ if (isset($_SESSION["id"])) {
                 <h5>Home / <span style="font-weight: bold;">Detail Paket</span></h5>
                 <div class="row">
                     <div class="card card-detail col col-7" style="margin-bottom: 20px;">
-                        <h3>Jalan - Jalan Ke Jogja</h3>
+                        <?php
+                        $id = $_GET["id"];
+                        $data = query("SELECT title FROM paket_travel WHERE id = '$id'") ?>
+                        <?php foreach ($data as $data) : ?>
+                        <h3><?= $data["title"]; ?></h3>
+                        <?php endforeach; ?>
                         <div class="gallery">
                             <div class="xzoom-container" style="margin-left: 30px; margin-top: 20px;">
                                 <?php $id = $_GET["id"];
@@ -153,18 +168,21 @@ if (isset($_SESSION["id"])) {
                             </tr>
                             <tr>
                                 <th style="width: 50%;">Harga</th>
-                                <td style="width: 50%; " class="text-right"> <?= $data["harga"] ?>
-
+                                <td style="width: 50%; " class="text-right">Rp.
+                                    <?= number_format($data["harga"], 2, ',', '.') ?>
                                 </td>
                             </tr>
                         </table>
                         <div class="join">
                             <?php if (isset($_SESSION["id"])) : ?>
-                            <button class="btn btn-block"
-                                style="width: 380px; border-radius: 0; margin-left: -16px; background-color: #FFB468;"><a
-                                    href="" style="color: white; text-decoration: none;"> Join
-                                    Now</a>
+                            <button class="btn btn-block btn-submit"
+                                style="width: 380px; border-radius: 0; margin-left: -16px; background-color: #FFB468;"
+                                name="submit">
+                                Join
+                                Now
                             </button>
+                            <input type="hidden" id="id_travel" value="<?= $_GET["id"] ?>">
+                            <input type="hidden" id="harga" value="<?= $data["harga"] ?>">
                             <?php endif; ?>
                             <?php if (empty($_SESSION["id"])) : ?>
                             <button class="btn btn-block"
@@ -226,6 +244,25 @@ if (isset($_SESSION["id"])) {
         tint: '#333',
         Xoffset: 20
     });
+    $(".btn-submit").on("click", function() {
+        let idtravel = $("#id_travel").val();
+        let userid = $("#user_id").val();
+        let harga = $("#harga").val();
+        let formData = new FormData();
+        formData.append("idtravel", idtravel);
+        formData.append("userid", userid);
+        formData.append("harga", harga);
+        fetch("postKeranjang.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(resjson => {
+                location.href = "keranjang.php";
+            })
+    })
     </script>
 </body>
 

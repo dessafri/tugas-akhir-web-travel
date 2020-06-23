@@ -1,3 +1,19 @@
+<?php
+require("../../functions/functions.php");
+session_start();
+
+if ($_SESSION["id"] == "") {
+    header("location: ../index.php");
+} else {
+    $id = $_SESSION["id"];
+    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT roles FROM users WHERE id ='$id'"));
+    $roles = $result["roles"];
+    if ($roles == "USER") {
+        header("Location: ../index.php");
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,13 +59,17 @@
         <div class="main_content h-100">
             <div class="header">
                 <div class="user">
-                    <span>Des Safri</span>
-                    <img src="../img/dummy.jpg" id="admin-avatar">
+                    <?php
+                    $id = $_SESSION["id"];
+                    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id ='$id'"));
+                    $username = $result["username"];  ?>
+                    <span id="admin-avatar" style="cursor: pointer;"><?= $username; ?></span>
                     <div class="floating-nav">
                         <div class="nav">
                             <div>
-                                <a href="" class="profile"><i class="fas fa-user-alt"></i>Profile</a> <br>
-                                <a href="" id="logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                                <a href="../../myAccount.php?id=<?= $_SESSION["id"] ?>" class="profile"><i
+                                        class="fas fa-user-alt"></i>Profile</a> <br>
+                                <a href="../logout.php" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </div>
                         </div>
                     </div>
